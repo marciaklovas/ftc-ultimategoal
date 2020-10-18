@@ -90,8 +90,8 @@ public class NormalDrive {
 
     public void drive () {
 
-        p0 = opMode.gamepad1.left_stick_x + opMode.gamepad1.left_stick_y;
-        p1 = opMode.gamepad1.left_stick_x - opMode.gamepad1.left_stick_y;
+        p0 = opMode.gamepad1.left_stick_x - opMode.gamepad1.left_stick_y;
+        p1 = opMode.gamepad1.left_stick_x + opMode.gamepad1.left_stick_y;
         //p2 = opMode.gamepad1.left_stick_y - opMode.gamepad1.right_stick_x;
         //p3 = opMode.gamepad1.left_stick_y + opMode.gamepad1.right_stick_x;
 
