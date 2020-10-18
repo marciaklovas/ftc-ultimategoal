@@ -78,8 +78,8 @@ public class NormalDrive {
         parameters.loggingTag = "IMU";
         imu.initialize(parameters);
 */
-        wheel0.setDirection(DcMotor.Direction.REVERSE);
-        wheel1.setDirection(DcMotor.Direction.REVERSE);
+        wheel0.setDirection(DcMotor.Direction.FORWARD);
+        wheel1.setDirection(DcMotor.Direction.FORWARD);
 
     }
 
