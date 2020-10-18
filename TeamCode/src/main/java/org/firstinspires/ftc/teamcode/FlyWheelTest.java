@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class FlyWheelTest {
 
@@ -13,6 +14,7 @@ public class FlyWheelTest {
     public FlyWheelTest (LinearOpMode opmode) {
         this.opMode = opmode;
         flywheel1 = opMode.hardwareMap.get(DcMotor.class,"launcher");
+        flywheel1.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void wheelTrigger(){
