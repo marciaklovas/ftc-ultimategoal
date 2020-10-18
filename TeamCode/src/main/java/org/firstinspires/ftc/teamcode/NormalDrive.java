@@ -90,13 +90,13 @@ public class NormalDrive {
 
     public void drive () {
 
-        p0 = opMode.gamepad1.left_stick_x + opMode.gamepad1.right_stick_x;
-        p1 = opMode.gamepad1.left_stick_x - opMode.gamepad1.right_stick_x;
-        p2 = opMode.gamepad1.left_stick_y - opMode.gamepad1.right_stick_x;
-        p3 = opMode.gamepad1.left_stick_y + opMode.gamepad1.right_stick_x;
+        p0 = opMode.gamepad1.left_stick_x + opMode.gamepad1.left_stick_y;
+        p1 = opMode.gamepad1.left_stick_x - opMode.gamepad1.left_stick_y;
+        //p2 = opMode.gamepad1.left_stick_y - opMode.gamepad1.right_stick_x;
+        //p3 = opMode.gamepad1.left_stick_y + opMode.gamepad1.right_stick_x;
 
-        wheel0.setPower(p0/3);
-        wheel1.setPower(p1/3);
+        wheel0.setPower(p0);
+        wheel1.setPower(p1);
         //wheel2.setPower(p2/3);
         //wheel3.setPower(p3/3);
 
