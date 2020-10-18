@@ -10,6 +10,8 @@
 //
 //  Revisions
 //  	09-27-20	Elijah W.   Original
+//      10-11-20    Elijah W.   Commented constructor and drive methods to use
+//                              m0 and m1 only - prototype drive
 */
 
 package org.firstinspires.ftc.teamcode;
@@ -21,8 +23,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-//egg?
-//eggv2?
 
 public class NormalDrive {
 
@@ -65,21 +65,21 @@ public class NormalDrive {
         this.opMode = opmode; // 'this' used for clarity
         wheel0 = opMode.hardwareMap.get(DcMotor.class, "m0");
         wheel1 = opMode.hardwareMap.get(DcMotor.class, "m1");
-        wheel2 = opMode.hardwareMap.get(DcMotor.class, "m2");
-        wheel3 = opMode.hardwareMap.get(DcMotor.class, "m3");
-        sensorColor = opMode.hardwareMap.get(ColorSensor.class, "sensor_color_distance");
-        imu = opmode.hardwareMap.get(BNO055IMU.class, "imu");
+        //wheel2 = opMode.hardwareMap.get(DcMotor.class, "m2");
+        //wheel3 = opMode.hardwareMap.get(DcMotor.class, "m3");
+        //sensorColor = opMode.hardwareMap.get(ColorSensor.class, "sensor_color_distance");
+        //imu = opmode.hardwareMap.get(BNO055IMU.class, "imu");
 
         // IMU parameters
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        /*BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
         parameters.loggingEnabled = true;
         parameters.loggingTag = "IMU";
         imu.initialize(parameters);
-
+*/
         wheel0.setDirection(DcMotor.Direction.REVERSE);
-        wheel3.setDirection(DcMotor.Direction.REVERSE);
+        wheel1.setDirection(DcMotor.Direction.REVERSE);
 
     }
 
@@ -89,7 +89,7 @@ public class NormalDrive {
     }
 
     public void drive () {
-        /*
+
         p0 = opMode.gamepad1.left_stick_x + opMode.gamepad1.right_stick_x;
         p1 = opMode.gamepad1.left_stick_x - opMode.gamepad1.right_stick_x;
         p2 = opMode.gamepad1.left_stick_y - opMode.gamepad1.right_stick_x;
@@ -97,10 +97,10 @@ public class NormalDrive {
 
         wheel0.setPower(p0/3);
         wheel1.setPower(p1/3);
-        wheel2.setPower(p2/3);
-        wheel3.setPower(p3/3);
+        //wheel2.setPower(p2/3);
+        //wheel3.setPower(p3/3);
 
-         */
+
     }
 
 }
