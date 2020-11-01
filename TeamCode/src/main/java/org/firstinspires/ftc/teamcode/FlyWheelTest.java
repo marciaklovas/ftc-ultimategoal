@@ -14,11 +14,6 @@
  */
 
 
-
-
-
-
-
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -44,7 +39,6 @@ public class FlyWheelTest {
     }
 
     public void wheelButton(){
-        buttonspeed = opMode.gamepad1.right_bumper;
-        flywheel1.setPower(speed);
+        flywheel1.setPower(1);
     }
 }
