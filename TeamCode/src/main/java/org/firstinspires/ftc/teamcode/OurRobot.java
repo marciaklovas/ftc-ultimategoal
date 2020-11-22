@@ -37,4 +37,6 @@ public class OurRobot {
 
     public void wheelTrigger(){flyWheelTest.wheelTrigger();}
 
+    public void wheelButton() {flyWheelTest.wheelButton();}
+
 }

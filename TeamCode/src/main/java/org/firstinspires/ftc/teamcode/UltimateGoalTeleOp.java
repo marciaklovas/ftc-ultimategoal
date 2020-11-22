@@ -45,6 +45,9 @@ public class UltimateGoalTeleOp extends LinearOpMode {
 
             //////////////// GAMEPAD 1 (A) ///////////////////
 
+            if (gamepad1.right_bumper) {
+                UltGoal.wheelButton();
+            }
             //////////////// GAMEPAD 2 (B) ///////////////////
 
         }
