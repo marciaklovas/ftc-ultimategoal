@@ -34,7 +34,7 @@ public class FlyWheelTest {
 
     public FlyWheelTest (LinearOpMode opmode) {
         this.opMode = opmode;
-        flywheel1 = opMode.hardwareMap.get(DcMotor.class,"launcher");
+        flywheel1 = opMode.hardwareMap.get(DcMotor.class,"intake");
         flywheel1.setDirection(DcMotor.Direction.FORWARD);
     }
 //sets the gamepad button trigger for the fly wheel
