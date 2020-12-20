@@ -42,6 +42,7 @@ public class UltimateGoalTeleOp extends LinearOpMode {
 
             UltGoal.drive();
             UltGoal.wheelTrigger();
+            UltGoal.launcher();
 
             //////////////// GAMEPAD 1 (A) ///////////////////
 

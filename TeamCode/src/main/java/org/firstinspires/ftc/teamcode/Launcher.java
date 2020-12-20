@@ -28,7 +28,7 @@ public class Launcher {
     private boolean buttonspeed2;
 
 
-    private Launcher (LinearOpMode opmode) {
+    public Launcher (LinearOpMode opmode) {
         this.opMode = opmode;
         launcherMotor = opMode.hardwareMap.get(DcMotor.class,"launcher");
         launcherMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -40,10 +40,10 @@ public class Launcher {
         launcherMotor.setPower(speed2);
     }
 
-    public void wheelButton() {
-        buttonspeed2 = opMode.gamepad1.right_bumper;
+    //public void wheelButton() {
+      //  buttonspeed2 = opMode.gamepad1.right_bumper;
         //flywheel1.setPower(speed);
-        launcherMotor.setPower(1);
-    }
+        //launcherMotor.setPower(1);
+    //}
 
 }

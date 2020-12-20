@@ -21,10 +21,13 @@ public class OurRobot {
 
     private FlyWheelTest flyWheelTest;
 
+    private Launcher launcher;
+
     public OurRobot(LinearOpMode opmode)
     {
         normalDrive = new NormalDrive(opmode);
         flyWheelTest = new FlyWheelTest(opmode);
+        launcher = new Launcher(opmode);
     }
 
     public void init() {
@@ -39,4 +42,5 @@ public class OurRobot {
 
     public void wheelButton() {flyWheelTest.wheelButton();}
 
+    public void launcher() {launcher.wheelTrigger(); }
 }
