@@ -39,7 +39,7 @@ public class FlyWheelTest {
     }
 //sets the gamepad button trigger for the fly wheel
     public void wheelTrigger(){
-        speed = opMode.gamepad1.left_trigger;
+        speed = opMode.gamepad1.left_trigger - opMode.gamepad1.right_trigger;
         flywheel1.setPower(speed);
     }
 

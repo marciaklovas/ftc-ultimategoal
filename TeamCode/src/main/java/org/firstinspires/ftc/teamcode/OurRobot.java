@@ -14,6 +14,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.I2cDevice;
 
 public class OurRobot {
 
@@ -22,6 +23,8 @@ public class OurRobot {
     private FlyWheelTest flyWheelTest;
 
     private Launcher launcher;
+
+    private I2cDriver LCD;
 
     public OurRobot(LinearOpMode opmode)
     {
@@ -43,4 +46,6 @@ public class OurRobot {
     public void wheelButton() {flyWheelTest.wheelButton();}
 
     public void launcher() {launcher.wheelTrigger(); }
+
+    public void displayLCD() {LCD.display("Hello");}
 }
