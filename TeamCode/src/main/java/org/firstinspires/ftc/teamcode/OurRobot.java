@@ -3,49 +3,45 @@
 //
 //  Class OurRobot
 //
-//  Methods:
-//  	constructor - instantiates a normalDrive
-//  	init()
-//
 //  Revisions
 //  	09-27-20	Coach M.   Original
+//      02-19-21    Elijah W.  Renamed methods and objects to more meaningful
+//                             Added I2C MCP23017 to robot
 */
 
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.I2cDevice;
 
 public class OurRobot {
 
-    private NormalDrive normalDrive;
-
-    private FlyWheelTest flyWheelTest;
-
+    private Drivetrain drivetrain;
+    private Intake intake;
     private Launcher launcher;
-
-    private I2cDriver LCD;
+    private I2c mcp;
 
     public OurRobot(LinearOpMode opmode)
     {
-        normalDrive = new NormalDrive(opmode);
-        flyWheelTest = new FlyWheelTest(opmode);
+        drivetrain = new Drivetrain(opmode);
+        intake = new Intake(opmode);
         launcher = new Launcher(opmode);
+        mcp = new I2c(opmode);
     }
 
     public void init() {
-        normalDrive.init();
+        drivetrain.init();
     }
-
     public void drive() {
-        normalDrive.drive();
+        drivetrain.drive();
     }
+    public void triggerIntake(){intake.trigger();}
+    public void triggerLauncher() {launcher.trigger(); }
+    public void signalDriver() {mcp.ledOn();}
 
-    public void wheelTrigger(){flyWheelTest.wheelTrigger();}
-
-    public void wheelButton() {flyWheelTest.wheelButton();}
-
-    public void launcher() {launcher.wheelTrigger(); }
-
-    public void displayLCD() {LCD.display("Hello");}
+    public void driveDistance(boolean direction, double inches, double power)
+    { drivetrain.goDistance(direction, inches, power);}
+    public void backToLine() {drivetrain.backToLine();}
+    public void fwdToLine() {drivetrain.fwdToLine();}
+    public void turnRight(int angle) {drivetrain.turnRight(angle);}
+    public void turnLeft(int angle) {drivetrain.turnLeft(angle);}
 }

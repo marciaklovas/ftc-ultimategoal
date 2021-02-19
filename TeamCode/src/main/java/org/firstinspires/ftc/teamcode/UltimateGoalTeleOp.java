@@ -41,11 +41,11 @@ public class UltimateGoalTeleOp extends LinearOpMode {
         while (opModeIsActive()) {
 
             UltGoal.drive();
-            UltGoal.wheelTrigger();
-            UltGoal.launcher();
+            UltGoal.triggerIntake();
+            UltGoal.triggerLauncher();
 
             //////////////// GAMEPAD 1 (A) ///////////////////
-
+            // use some control (?) to UltGoal.signalDriver();
 
             //////////////// GAMEPAD 2 (B) ///////////////////
 
