@@ -19,6 +19,8 @@ public class OurRobot {
     private Intake intake;
     private Launcher launcher;
     private I2c mcp;
+    private CVUnit cv;
+    private Claw claw; // to pick up or drag wobble stick
 
     public OurRobot(LinearOpMode opmode)
     {
@@ -26,10 +28,13 @@ public class OurRobot {
         intake = new Intake(opmode);
         launcher = new Launcher(opmode);
         mcp = new I2c(opmode);
+        cv = new CVUnit(opmode);
+        claw = new Claw(opmode);
     }
 
     public void init() {
         drivetrain.init();
+        cv.init();
     }
     public void drive() {
         drivetrain.drive();

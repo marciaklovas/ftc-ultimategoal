@@ -38,6 +38,8 @@ public class I2c {
     final byte LCD = 0x3F; // I2c address of LCD
     final byte MCP = 0x20; // I2C address of MCP23017
 
+    // Note that a Java byte holds -128 to 127, stored in 8-bit two's complement form
+
     // LCD
     final byte DDRAM = 0x00; // beginning of DDRAM
     final byte IR = 0x10; // Instruction register
