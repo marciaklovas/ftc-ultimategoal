@@ -20,7 +20,7 @@ public class OurRobot {
     private Launcher launcher;
     private I2c mcp;
     private CVUnit cv;
-    private Claw claw; // to pick up or drag wobble stick
+    private Arm arm; // to pick up or drag wobble stick
 
     public OurRobot(LinearOpMode opmode)
     {
@@ -29,7 +29,7 @@ public class OurRobot {
         launcher = new Launcher(opmode);
         mcp = new I2c(opmode);
         cv = new CVUnit(opmode);
-        claw = new Claw(opmode);
+        arm = new Arm(opmode);
     }
 
     public void init() {
@@ -43,6 +43,7 @@ public class OurRobot {
     public void triggerLauncher() {launcher.trigger(); }
     public void signalDriver() {mcp.ledOn();}
     public void look() {cv.look();};
+    public void controlArm() {arm.move();};
 
     public void driveDistance(boolean direction, double inches, double power)
     { drivetrain.goDistance(direction, inches, power);}

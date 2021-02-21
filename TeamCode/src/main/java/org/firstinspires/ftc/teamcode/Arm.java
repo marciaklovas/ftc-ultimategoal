@@ -1,14 +1,14 @@
 /*
 //  FTC FROGS (#14335) TEAM CODE
 //
-//  Class Claw
+//  Class Arm
 //
 //  Methods:
 //      constructor
 //      init()
 //
 //  Revisions
-//      02-19-21    Elijah W.       Original
+//      02-21-21    Elijah W.       Original
 //
 */
 
@@ -19,23 +19,40 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class Claw {
+public class Arm {
 
-    private Servo servo1;
-    private Servo servo0;
+    //private Servo servo1;
+    //private Servo servo0;
     private DcMotor lift;
-    private TouchSensor digitalTouch;
+    //private TouchSensor digitalTouch;
     private LinearOpMode opmode;
 
     private double armPower;
 
     // constructor
-    public Claw(LinearOpMode opmode) {
+    public Arm(LinearOpMode opmode) {
         this.opmode = opmode; // 'this' used for clarity
         //servo0     = opmode.hardwareMap.get(Servo.class, "servo0");
         //c
-        //lift       = opmode.hardwareMap.get(DcMotor.class, "arm_lift");
+        lift       = opmode.hardwareMap.get(DcMotor.class, "armlift");
         //digitalTouch = opmode.hardwareMap.get(TouchSensor.class, "sensor_digital");
+    }
+
+    public void move() {
+        armPower = -opmode.gamepad2.right_stick_y;
+
+        /*
+        if (digitalTouch.getValue() == 1) {
+            if (armPower < 0) {
+                lift.setPower(-armPower/3);
+            }
+            else {
+                lift.setPower(armPower/3);
+            }
+        }
+        else { */
+            lift.setPower(armPower/3);
+        //}
     }
 
     /*
@@ -46,21 +63,6 @@ public class Claw {
             lift.setPower(-.2);
         }
         lift.setPower(armPower);
-    }
-
-    public void move() {
-        armPower = -opmode.gamepad2.left_stick_y;
-        if (digitalTouch.getValue() == 1) {
-            if (armPower < 0) {
-                lift.setPower(-armPower/3);
-            }
-            else {
-                lift.setPower(armPower/3);
-            }
-        }
-        else {
-            lift.setPower(armPower/3);
-        }
     }
 
     // open claw and move claw down in position to grab ball

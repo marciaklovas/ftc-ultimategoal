@@ -44,6 +44,7 @@ public class UltimateGoalTeleOp extends LinearOpMode {
             UltGoal.triggerIntake();
             UltGoal.triggerLauncher();
             UltGoal.look();
+            //UltGoal.controlArm();
 
             //////////////// GAMEPAD 1 (A) ///////////////////
             // use some control (?) to UltGoal.signalDriver();
