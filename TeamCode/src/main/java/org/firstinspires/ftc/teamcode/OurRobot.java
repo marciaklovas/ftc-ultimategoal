@@ -42,6 +42,7 @@ public class OurRobot {
     public void triggerIntake(){intake.trigger();}
     public void triggerLauncher() {launcher.trigger(); }
     public void signalDriver() {mcp.ledOn();}
+    public void look() {cv.look();};
 
     public void driveDistance(boolean direction, double inches, double power)
     { drivetrain.goDistance(direction, inches, power);}

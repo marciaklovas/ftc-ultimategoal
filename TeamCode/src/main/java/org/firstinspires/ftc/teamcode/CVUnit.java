@@ -22,6 +22,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -92,6 +93,7 @@ public class CVUnit {
     private float phoneYRotate    = 0;
     private float phoneZRotate    = 0;
 
+    private Servo servo3;
 
     private VuforiaTrackables targetsUltimateGoal;
     private List<VuforiaTrackable> allTrackables;
@@ -102,6 +104,8 @@ public class CVUnit {
         this.opMode = opmode;    // 'this' used for clarity
         cameraMonitorViewId=opMode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
                 opmode.hardwareMap.appContext.getPackageName());
+        servo3 = opmode.hardwareMap.get(Servo.class, "servo3");
+
     }
 
     public void init() {
@@ -229,6 +233,10 @@ public class CVUnit {
         for (VuforiaTrackable trackable : allTrackables) {
             ((VuforiaTrackableDefaultListener) trackable.getListener()).setPhoneInformation(robotFromCamera, parameters.cameraDirection);
         }
+    }
+
+    public void look() {
+        servo3.setPosition((opMode.gamepad2.left_stick_x/2)+.5);
     }
 
     /**

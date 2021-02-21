@@ -33,7 +33,7 @@ public class Claw {
     public Claw(LinearOpMode opmode) {
         this.opmode = opmode; // 'this' used for clarity
         //servo0     = opmode.hardwareMap.get(Servo.class, "servo0");
-        //servo1     = opmode.hardwareMap.get(Servo.class, "servo1");
+        //c
         //lift       = opmode.hardwareMap.get(DcMotor.class, "arm_lift");
         //digitalTouch = opmode.hardwareMap.get(TouchSensor.class, "sensor_digital");
     }
