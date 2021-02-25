@@ -11,11 +11,13 @@
 //      stop (tensorflow)
 //      track (vuforia target)
 //      halt (vuforia target)
+//      look - rotate phone
 //
 //  Revisions
 //      03-03-19    Elijah W. and Kai P.   Original Vuforia code
 //      03-18-19    Elijah W. and Kai P.   Added Tensor Flow code
 //      02-19-21    Elijah W.              Updated for Ultimate Goal
+//      02-21-21    Elijah W,              Added look() method to rotate phone
 //
 */
 
@@ -93,7 +95,7 @@ public class CVUnit {
     private float phoneYRotate    = 0;
     private float phoneZRotate    = 0;
 
-    private Servo servo3;
+    private Servo servo;
 
     private VuforiaTrackables targetsUltimateGoal;
     private List<VuforiaTrackable> allTrackables;
@@ -104,7 +106,7 @@ public class CVUnit {
         this.opMode = opmode;    // 'this' used for clarity
         cameraMonitorViewId=opMode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
                 opmode.hardwareMap.appContext.getPackageName());
-        servo3 = opmode.hardwareMap.get(Servo.class, "servo3");
+        servo = opmode.hardwareMap.get(Servo.class, "phone");
 
     }
 
@@ -236,7 +238,7 @@ public class CVUnit {
     }
 
     public void look() {
-        servo3.setPosition((opMode.gamepad2.left_stick_x/2)+.5);
+        servo.setPosition((opMode.gamepad2.left_stick_x/2)+.5);
     }
 
     /**

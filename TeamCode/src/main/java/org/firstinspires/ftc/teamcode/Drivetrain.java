@@ -88,44 +88,31 @@ public class Drivetrain {
         leftWheel.setPower(0);
     }
 
-    public void drive () {
-        rightPower = opMode.gamepad1.left_stick_y - opMode.gamepad1.left_stick_x;
-        leftPower = opMode.gamepad1.left_stick_y + opMode.gamepad1.left_stick_x;
+    public void drive (boolean cS) {
+        rightPower = -opMode.gamepad1.left_stick_y - opMode.gamepad1.left_stick_x;
+        leftPower = -opMode.gamepad1.left_stick_y + opMode.gamepad1.left_stick_x;
 
-        rightWheel.setPower(rightPower);
-        leftWheel.setPower(leftPower);
-    }
-
-    /* Steer method which can be done fast or slow. Consider replacing drive with steer?
-    // cS = control speed, FAST or SLOW
-    public void steer(boolean cS) {
-
-        drive = -opMode.gamepad1.left_stick_y;
-        turn  =  opMode.gamepad1.left_stick_x;
-
-        leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
-        rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
-
+        //rightWheel.setPower(rightPower);
+        //leftWheel.setPower(leftPower);
         // Set the power of motors
         if (cS == FAST) {
-            leftDrive.setPower(leftPower);
-            rightDrive.setPower(rightPower);
+            rightWheel.setPower(rightPower);
+            leftWheel.setPower(leftPower);
         }
         else { // SLOW
-            leftDrive.setPower(leftPower/2);
-            rightDrive.setPower(rightPower/2);
+            rightWheel.setPower(rightPower/2);
+            leftWheel.setPower(leftPower/2);
         }
+    }
 
-    } */
-
-    // what does gamepad1.y do, emergency stop?
+    // gamepad1.x = emergency stop
     public void fwdToLine() {
         rightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightWheel.setPower(0.2);
         leftWheel.setPower(0.2);
         while (opMode.opModeIsActive() && (sensor.alpha() <
-                WHITE_THRESHOLD) && (!opMode.gamepad1.y)) {
+                WHITE_THRESHOLD) && (!opMode.gamepad1.x)) {
             opMode.telemetry.addData("Light Level",
                     sensor.alpha());
             opMode.telemetry.update();
@@ -140,7 +127,7 @@ public class Drivetrain {
         rightWheel.setPower(-0.2);
         leftWheel.setPower(-0.2);
         while (opMode.opModeIsActive() && (sensor.alpha() <
-                WHITE_THRESHOLD) && (!opMode.gamepad1.y)) {
+                WHITE_THRESHOLD) && (!opMode.gamepad1.x)) {
             opMode.telemetry.addData("Light Level",
                     sensor.alpha());
             opMode.telemetry.update();

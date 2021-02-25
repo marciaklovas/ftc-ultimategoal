@@ -41,10 +41,22 @@ public class UltimateGoalAuto extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-        // test drive
-        UltGoal.driveDistance(FORWARD, 24, 0.2);
-        sleep(200);
-        UltGoal.turnRight(90);
+        // detect 0, 1 or 4 rings
+
+        // lower arm around wobble stick
+
+        // if 0, drive to A square
+
+        // if 1, drive to B square
+
+        // if 4, drive to C square
+
+        // use CV to drive to low goal
+
+        // dump 3 rings passively into low goal
+
+        //drive back to launch line and park
+        UltGoal.driveDistance(BACKWARD, 60, 0.2);
         sleep(200);
         UltGoal.backToLine();
     }
