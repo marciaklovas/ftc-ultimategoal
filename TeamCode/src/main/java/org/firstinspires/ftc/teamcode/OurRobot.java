@@ -54,4 +54,6 @@ public class OurRobot {
     public void initializeArm() {arm.init();}
     public void raiseArm() {arm.up();}
     public void lowerArm() {arm.down();}
+
+    public int getRings() {return cv.detectNumberOfRings();}
 }

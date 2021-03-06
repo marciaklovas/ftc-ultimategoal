@@ -19,11 +19,17 @@
 //                              m0 and m1 only - prototype drive
 //      02-19-21    Elijah W.   Renamed from Normal Drive to Drivetrain,
 //                              Added color sensor and IMU methods
+//      03-06-21    Elijah W.   Corrected tick sign in goDistance() and
+//                              updated color sensor code to use
+//                              NormalizedColorSensor
 //
 */
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.hardware.ColorSensor;
+import android.graphics.Color;
+
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
+import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -48,7 +54,7 @@ public class Drivetrain {
     // declare members
     private DcMotor rightWheel;
     private DcMotor leftWheel;
-    private ColorSensor sensor;
+    private NormalizedColorSensor sensor;
     private BNO055IMU imu;
     private LinearOpMode opMode;
 
@@ -62,13 +68,19 @@ public class Drivetrain {
     private Orientation angles;
     private Acceleration gravity;
 
+    // Color sensor
+    private float gain = 2;
+    final float[] hsvValues = new float[3];
+
     // constructor method
     public Drivetrain (LinearOpMode opmode) {
-        // hardwaremap
+
         this.opMode = opmode; // 'this' used for clarity
+
+        // hardwaremap
         rightWheel = opMode.hardwareMap.get(DcMotor.class, "m0");
         leftWheel = opMode.hardwareMap.get(DcMotor.class, "m1");
-        sensor = opMode.hardwareMap.get(ColorSensor.class, "colorsensor");
+        sensor = opMode.hardwareMap.get(NormalizedColorSensor.class, "colorsensor");
         imu = opmode.hardwareMap.get(BNO055IMU.class, "imu");
 
         // IMU parameters
@@ -84,8 +96,11 @@ public class Drivetrain {
         // Set initial conditions for the motors
         rightWheel.setDirection(DcMotor.Direction.FORWARD);
         leftWheel.setDirection(DcMotor.Direction.REVERSE);
+        rightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightWheel.setPower(0);
         leftWheel.setPower(0);
+        sensor.setGain(gain);
     }
 
     public void drive (boolean cS) {
@@ -111,10 +126,29 @@ public class Drivetrain {
         leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightWheel.setPower(0.2);
         leftWheel.setPower(0.2);
-        while (opMode.opModeIsActive() && (sensor.alpha() <
-                WHITE_THRESHOLD) && (!opMode.gamepad1.x)) {
-            opMode.telemetry.addData("Light Level",
-                    sensor.alpha());
+
+        // Get the normalized colors from the sensor
+        NormalizedRGBA colors = sensor.getNormalizedColors();
+
+        // Convert to HSV
+        Color.colorToHSV(colors.toColor(), hsvValues);
+
+        /*
+        telemetry.addLine()
+                .addData("Red", "%.3f", colors.red)
+                .addData("Green", "%.3f", colors.green)
+                .addData("Blue", "%.3f", colors.blue);
+        telemetry.addLine()
+                .addData("Hue", "%.3f", hsvValues[0])
+                .addData("Saturation", "%.3f", hsvValues[1])
+                .addData("Value", "%.3f", hsvValues[2]);
+
+        opMode.telemetry.addData("Alpha", "%.3f", colors.alpha);
+        opMode.telemetry.update();
+        */
+
+        while (opMode.opModeIsActive() && (colors.alpha <  WHITE_THRESHOLD) && (!opMode.gamepad1.x)) {
+            opMode.telemetry.addData("Light Level", colors.alpha);
             opMode.telemetry.update();
         }
         rightWheel.setPower(0);
@@ -126,10 +160,15 @@ public class Drivetrain {
         leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightWheel.setPower(-0.2);
         leftWheel.setPower(-0.2);
-        while (opMode.opModeIsActive() && (sensor.alpha() <
-                WHITE_THRESHOLD) && (!opMode.gamepad1.x)) {
-            opMode.telemetry.addData("Light Level",
-                    sensor.alpha());
+
+        // Get the normalized colors from the sensor
+        NormalizedRGBA colors = sensor.getNormalizedColors();
+
+        // Convert to HSV
+        Color.colorToHSV(colors.toColor(), hsvValues);
+
+        while (opMode.opModeIsActive() && (colors.alpha <  WHITE_THRESHOLD) && (!opMode.gamepad1.x)) {
+            opMode.telemetry.addData("Light Level", colors.alpha);
             opMode.telemetry.update();
         }
         rightWheel.setPower(0);
@@ -158,16 +197,16 @@ public class Drivetrain {
         double ticks=rotations*TETRIX_MOTOR_1440;
 
         // add minus sign to ticks below to go in reverse
-        if (direction == BACKWARD) {
+        if (direction == FORWARD) {
             leftWheel.setTargetPosition((int)-ticks);
             rightWheel.setTargetPosition((int)-ticks);
         }
-        else if (direction == FORWARD) {
+        else if (direction == BACKWARD) {
             leftWheel.setTargetPosition((int)ticks);
             rightWheel.setTargetPosition((int)ticks);
         }
 
-        // setup to go desired distnace
+        // setup to go desired distance
         leftWheel.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightWheel.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftWheel.setPower(power);

@@ -282,6 +282,38 @@ public class CVUnit {
         }
     }
 
+    public int detectNumberOfRings() // tensorflow
+    {
+        if (tfod != null)
+        {
+            tfod.activate();
+        }
+
+        if (tfod != null)
+        {
+            // getUpdatedRecognitions() will return null if no new information is available since
+            // the last time that call was made.
+            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+            if (updatedRecognitions != null) {
+                opMode.telemetry.addData("# Object Detected", updatedRecognitions.size());
+
+                // step through the list of recognitions and display boundary info.
+                int i = 0;
+                for (Recognition recognition : updatedRecognitions) {
+                    opMode.telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+                    opMode.telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
+                            recognition.getLeft(), recognition.getTop());
+                    opMode.telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
+                            recognition.getRight(), recognition.getBottom());
+                }
+                opMode.telemetry.update();
+                return 1; // fix this to return the correct number based on the recognition
+            }
+
+        }
+        return 9; // nothing detected
+    }
+
     public void stop() //tensorflow
     {
         tfod.shutdown();

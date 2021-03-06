@@ -44,18 +44,35 @@ public class UltimateGoalAuto extends LinearOpMode {
         // detect 0, 1 or 4 rings
 
         // lower arm around wobble stick
+        UltGoal.lowerArm();
 
         // if 0, drive to A square
-
         // if 1, drive to B square
-
         // if 4, drive to C square
+        if (UltGoal.getRings() == 0)
+        {
+            UltGoal.driveDistance(FORWARD, 60, 0.3);
+            UltGoal.fwdToLine();
+            UltGoal.turnRight(15);
 
-        // use CV to drive to low goal
+            // use CV to drive to low goal
+        }
+        else if (UltGoal.getRings() == 1)
+        {
+            // use CV to drive to low goal
+        }
+        else if (UltGoal.getRings() == 4)
+        {
+            // use CV to drive to low goal
+        }
+        else
+        {
+            // skip this part of the challenge - cv failed
+        }
 
         // dump 3 rings passively into low goal
 
-        //drive back to launch line and park
+        //drive back to launch line and park - avoiding obstacles
         UltGoal.driveDistance(BACKWARD, 60, 0.2);
         sleep(200);
         UltGoal.backToLine();
