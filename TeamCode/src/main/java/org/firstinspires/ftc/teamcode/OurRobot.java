@@ -7,7 +7,6 @@
 //  	09-27-20	Coach M.   Original
 //      02-19-21    Elijah W.  Renamed methods and objects to more meaningful
 //                             Added I2C MCP23017 to robot
-//
 */
 
 package org.firstinspires.ftc.teamcode;
@@ -37,8 +36,6 @@ public class OurRobot {
         drivetrain.init();
         cv.init();
     }
-
-    // continuous checks
     public void drive(boolean cS) {
         drivetrain.drive(cS);
     }
@@ -48,7 +45,6 @@ public class OurRobot {
     public void look() {cv.look();};
     public void controlArm() {arm.adjustArm();};
 
-    // individual commands
     public void driveDistance(boolean direction, double inches, double power)
         { drivetrain.goDistance(direction, inches, power);}
     public void backToLine() {drivetrain.backToLine();}

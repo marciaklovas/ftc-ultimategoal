@@ -32,8 +32,8 @@ public class Launcher {
     }
 
     public void trigger() {
-        // need to use different controls than for intake! what are those?
-        //speed = opMode.gamepad1.right_trigger;
-        //launcherMotor.setPower(speed);
+        // used gamepad 1 for intake, gamepad 2 for launcher
+        speed = opMode.gamepad2.right_trigger;
+        launcherMotor.setPower(speed);
     }
 }
