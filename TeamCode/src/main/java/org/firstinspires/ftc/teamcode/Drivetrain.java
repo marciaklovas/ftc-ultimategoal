@@ -48,8 +48,8 @@ public class Drivetrain {
     final static double WHITE_THRESHOLD = 400;
     final static boolean FAST = false;
     final static boolean SLOW = true;
-    final static boolean FORWARD = false;
-    final static boolean BACKWARD = true;
+    final static boolean GO_FORWARD = false;
+    final static boolean GO_BACKWARD = true;
 
     // declare members
     private DcMotor rightWheel;
@@ -127,11 +127,8 @@ public class Drivetrain {
         rightWheel.setPower(0.2);
         leftWheel.setPower(0.2);
 
-        // Get the normalized colors from the sensor
+        // Used to get the normalized colors from the sensor
         NormalizedRGBA colors = sensor.getNormalizedColors();
-
-        // Convert to HSV
-        Color.colorToHSV(colors.toColor(), hsvValues);
 
         /*
         telemetry.addLine()
@@ -148,6 +145,11 @@ public class Drivetrain {
         */
 
         while (opMode.opModeIsActive() && (colors.alpha <  WHITE_THRESHOLD) && (!opMode.gamepad1.x)) {
+            // Get the normalized colors from the sensor
+            colors = sensor.getNormalizedColors();
+
+            // Convert to HSV
+            Color.colorToHSV(colors.toColor(), hsvValues);
             opMode.telemetry.addData("Light Level", colors.alpha);
             opMode.telemetry.update();
         }
@@ -161,13 +163,15 @@ public class Drivetrain {
         rightWheel.setPower(-0.2);
         leftWheel.setPower(-0.2);
 
-        // Get the normalized colors from the sensor
+        // Used to get the normalized colors from the sensor
         NormalizedRGBA colors = sensor.getNormalizedColors();
 
-        // Convert to HSV
-        Color.colorToHSV(colors.toColor(), hsvValues);
-
         while (opMode.opModeIsActive() && (colors.alpha <  WHITE_THRESHOLD) && (!opMode.gamepad1.x)) {
+            // Get the normalized colors from the sensor
+            colors = sensor.getNormalizedColors();
+
+            // Convert to HSV
+            Color.colorToHSV(colors.toColor(), hsvValues);
             opMode.telemetry.addData("Light Level", colors.alpha);
             opMode.telemetry.update();
         }
@@ -181,6 +185,8 @@ public class Drivetrain {
 
         rightWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightWheel.setDirection(DcMotor.Direction.FORWARD);
+        leftWheel.setDirection(DcMotor.Direction.REVERSE);
 
         // debug display on driver station phone
         opMode.telemetry.addData("leftTicks: ",
@@ -197,13 +203,13 @@ public class Drivetrain {
         double ticks=rotations*TETRIX_MOTOR_1440;
 
         // add minus sign to ticks below to go in reverse
-        if (direction == FORWARD) {
-            leftWheel.setTargetPosition((int)-ticks);
-            rightWheel.setTargetPosition((int)-ticks);
-        }
-        else if (direction == BACKWARD) {
+        if (direction == GO_FORWARD) {
             leftWheel.setTargetPosition((int)ticks);
             rightWheel.setTargetPosition((int)ticks);
+        }
+        else if (direction == GO_BACKWARD) {
+            leftWheel.setTargetPosition((int)-ticks);
+            rightWheel.setTargetPosition((int)-ticks);
         }
 
         // setup to go desired distance
