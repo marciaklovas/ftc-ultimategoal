@@ -208,8 +208,8 @@ public class Drivetrain {
             rightWheel.setTargetPosition((int)ticks);
         }
         else if (direction == GO_BACKWARD) {
-            leftWheel.setTargetPosition((int)-ticks);
-            rightWheel.setTargetPosition((int)-ticks);
+            leftWheel.setTargetPosition(-(int)ticks);
+            rightWheel.setTargetPosition(-(int)ticks);
         }
 
         // setup to go desired distance
