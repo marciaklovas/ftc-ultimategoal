@@ -16,10 +16,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 public class Arm {
 
@@ -50,7 +47,7 @@ public class Arm {
     }
 
     public void adjustArm() {
-        arm.setPosition((opmode.gamepad2.right_stick_y/2)+.5);
+        arm.setPosition((opmode.gamepad2.right_stick_y/2)+.6);
     }
 
     public void up(){
