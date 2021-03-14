@@ -23,8 +23,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class UltimateGoalTeleOp extends LinearOpMode {
 
     // declare constants
-    static final boolean GO_BACKWARD = true;
-    static final boolean GO_FORWARD = false;
     static final boolean FAST = false;
     static final boolean SLOW = true;
 
@@ -84,11 +82,11 @@ public class UltimateGoalTeleOp extends LinearOpMode {
             }
 
             if (gamepad1.dpad_up) {
-                UltGoal.driveDistance(GO_FORWARD, 24, 0.3);
+                UltGoal.driveDistance(OurRobot.GO_FORWARD, 24, 0.3);
             }
 
             if (gamepad1.dpad_down) {
-                UltGoal.driveDistance(GO_BACKWARD, 24, 0.3);
+                UltGoal.driveDistance(OurRobot.GO_BACKWARD, 24, 0.3);
             }
 
             // use some control (?) to UltGoal.signalDriver();

@@ -21,10 +21,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class UltimateGoalAuto extends LinearOpMode {
 
-    // Declare constants
-    final static boolean BACKWARD = true;
-    final static boolean FORWARD = false;
-
     // Declare members
     private OurRobot UltGoal;
     private ElapsedTime runtime; // not sure how to use this yet
@@ -51,7 +47,7 @@ public class UltimateGoalAuto extends LinearOpMode {
         // if 4, drive to C square
         if (UltGoal.getRings() == 0)
         {
-            UltGoal.driveDistance(FORWARD, 60, 0.3);
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 60, 0.3);
             UltGoal.fwdToLine();
             UltGoal.turnRight(15);
 
@@ -73,7 +69,7 @@ public class UltimateGoalAuto extends LinearOpMode {
         // dump 3 rings passively into low goal
 
         //drive back to launch line and park - avoiding obstacles
-        UltGoal.driveDistance(BACKWARD, 60, 0.2);
+        UltGoal.driveDistance(OurRobot.GO_BACKWARD, 60, 0.2);
         sleep(200);
         UltGoal.backToLine();
     }

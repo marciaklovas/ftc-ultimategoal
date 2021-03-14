@@ -13,7 +13,11 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+
 public class OurRobot {
+
+    static final public boolean GO_BACKWARD = true;
+    static final public boolean GO_FORWARD = false;
 
     private Drivetrain drivetrain;
     private Intake intake;

@@ -22,6 +22,8 @@
 //      03-06-21    Elijah W.   Corrected tick sign in goDistance() and
 //                              updated color sensor code to use
 //                              NormalizedColorSensor
+//      03-14-21    Coach M. &  Cleaned up code - GO_BACKWARD/FORWARD
+//                  Elijah W.
 //
 */
 package org.firstinspires.ftc.teamcode;
@@ -45,11 +47,9 @@ public class Drivetrain {
     // declare constants
     final static double WHEEL_CIRCUM = 12.2;   // in inches
     final static int TETRIX_MOTOR_1440 = 1440; // 1440 ticks per revolution
-    final static double WHITE_THRESHOLD = 400;
+    final static double WHITE_THRESHOLD = 0.060;
     final static boolean FAST = false;
     final static boolean SLOW = true;
-    final static boolean GO_FORWARD = false;
-    final static boolean GO_BACKWARD = true;
 
     // declare members
     private DcMotor rightWheel;
@@ -101,14 +101,13 @@ public class Drivetrain {
         rightWheel.setPower(0);
         leftWheel.setPower(0);
         sensor.setGain(gain);
+
     }
 
     public void drive (boolean cS) {
         rightPower = -opMode.gamepad1.left_stick_y - opMode.gamepad1.left_stick_x;
         leftPower = -opMode.gamepad1.left_stick_y + opMode.gamepad1.left_stick_x;
 
-        //rightWheel.setPower(rightPower);
-        //leftWheel.setPower(leftPower);
         // Set the power of motors
         if (cS == FAST) {
             rightWheel.setPower(rightPower);
@@ -130,27 +129,23 @@ public class Drivetrain {
         // Used to get the normalized colors from the sensor
         NormalizedRGBA colors = sensor.getNormalizedColors();
 
-        /*
-        telemetry.addLine()
-                .addData("Red", "%.3f", colors.red)
-                .addData("Green", "%.3f", colors.green)
-                .addData("Blue", "%.3f", colors.blue);
-        telemetry.addLine()
-                .addData("Hue", "%.3f", hsvValues[0])
-                .addData("Saturation", "%.3f", hsvValues[1])
-                .addData("Value", "%.3f", hsvValues[2]);
-
-        opMode.telemetry.addData("Alpha", "%.3f", colors.alpha);
-        opMode.telemetry.update();
-        */
-
         while (opMode.opModeIsActive() && (colors.alpha <  WHITE_THRESHOLD) && (!opMode.gamepad1.x)) {
             // Get the normalized colors from the sensor
             colors = sensor.getNormalizedColors();
 
             // Convert to HSV
             Color.colorToHSV(colors.toColor(), hsvValues);
-            opMode.telemetry.addData("Light Level", colors.alpha);
+
+            opMode.telemetry.addLine()
+                    .addData("Red", "%.3f", colors.red)
+                    .addData("Green", "%.3f", colors.green)
+                    .addData("Blue", "%.3f", colors.blue);
+            opMode.telemetry.addLine()
+                    .addData("Hue", "%.3f", hsvValues[0])
+                    .addData("Saturation", "%.3f", hsvValues[1])
+                    .addData("Value", "%.3f", hsvValues[2]);
+            opMode.telemetry.addData("Alpha", "%.3f", colors.alpha);
+
             opMode.telemetry.update();
         }
         rightWheel.setPower(0);
@@ -172,7 +167,17 @@ public class Drivetrain {
 
             // Convert to HSV
             Color.colorToHSV(colors.toColor(), hsvValues);
-            opMode.telemetry.addData("Light Level", colors.alpha);
+
+            opMode.telemetry.addLine()
+                    .addData("Red", "%.3f", colors.red)
+                    .addData("Green", "%.3f", colors.green)
+                    .addData("Blue", "%.3f", colors.blue);
+            opMode.telemetry.addLine()
+                    .addData("Hue", "%.3f", hsvValues[0])
+                    .addData("Saturation", "%.3f", hsvValues[1])
+                    .addData("Value", "%.3f", hsvValues[2]);
+            opMode.telemetry.addData("Alpha", "%.3f", colors.alpha);
+
             opMode.telemetry.update();
         }
         rightWheel.setPower(0);
@@ -185,8 +190,6 @@ public class Drivetrain {
 
         rightWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightWheel.setDirection(DcMotor.Direction.FORWARD);
-        leftWheel.setDirection(DcMotor.Direction.REVERSE);
 
         // debug display on driver station phone
         opMode.telemetry.addData("leftTicks: ",
@@ -202,24 +205,19 @@ public class Drivetrain {
         // torquenado motor encoder has 1440 ticks per revolution
         double ticks=rotations*TETRIX_MOTOR_1440;
 
-        // add minus sign to ticks below to go in reverse
-        if (direction == GO_FORWARD) {
-            leftWheel.setTargetPosition((int)ticks);
-            rightWheel.setTargetPosition((int)ticks);
-        }
-        else if (direction == GO_BACKWARD) {
-            leftWheel.setTargetPosition(-(int)ticks);
-            rightWheel.setTargetPosition(-(int)ticks);
-        }
+        leftWheel.setTargetPosition((int)ticks);
+        rightWheel.setTargetPosition((int)ticks);
 
         // setup to go desired distance
         leftWheel.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightWheel.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
         leftWheel.setPower(power);
         rightWheel.setPower(power);
 
         //while moving, display debug data
         while (leftWheel.isBusy() && rightWheel.isBusy()) {
+            opMode.telemetry.addData("targetTicks: ",ticks);
             opMode.telemetry.addData("leftTicks: ",
                     leftWheel.getCurrentPosition());
             opMode.telemetry.addData("rightTicks: ",
@@ -233,9 +231,6 @@ public class Drivetrain {
         leftWheel.setPower(0);
         rightWheel.setPower(0);
 
-        // reset mode when done
-        leftWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     // consider combining turnRight and turnLeft into one method
