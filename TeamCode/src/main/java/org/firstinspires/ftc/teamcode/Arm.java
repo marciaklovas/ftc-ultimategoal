@@ -48,9 +48,9 @@ public class Arm {
 
     public void adjustArm()
     {
-        if (opmode.gamepad2.right_stick_y >= 0) {
+        if (opmode.gamepad2.right_stick_y <= 0) {
 
-            arm.setPosition(((-opmode.gamepad2.right_stick_y / (1 / .55))) + .25);
+            arm.setPosition(-((-opmode.gamepad2.right_stick_y / (1 / .55))) + .25);
         }
             opmode.telemetry.addData("armposition: ",
                     arm.getPosition());
