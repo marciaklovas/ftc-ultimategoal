@@ -52,6 +52,7 @@ public class Arm {
 
         opmode.telemetry.addData("armposition: ",
                 arm.getPosition());
+        opmode.telemetry.update();
     }
 
 
