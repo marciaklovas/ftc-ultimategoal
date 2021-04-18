@@ -120,10 +120,11 @@ public class CVUnit {
         // Load the data sets for the trackable objects. These particular data
         // sets are stored in the 'assets' part of our application.
         VuforiaTrackables targetsUltimateGoal = this.vuforia.loadTrackablesFromAsset("UltimateGoal");
+
         VuforiaTrackable blueTowerGoalTarget = targetsUltimateGoal.get(0);
         blueTowerGoalTarget.setName("Blue Tower Goal Target");
         VuforiaTrackable redTowerGoalTarget = targetsUltimateGoal.get(1);
-        redTowerGoalTarget.setName("Red Tower Goal Target");
+        redTowerGoalTarget.setName("Red Tower Goal Target"); // don't use this one
         VuforiaTrackable redAllianceTarget = targetsUltimateGoal.get(2);
         redAllianceTarget.setName("Red Alliance Target");
         VuforiaTrackable blueAllianceTarget = targetsUltimateGoal.get(3);
@@ -222,8 +223,8 @@ public class CVUnit {
 
         // Next, translate the camera lens to where it is on the robot.
         // In this example, it is centered (left to right), but forward of the middle of the robot, and above ground level.
-        final float CAMERA_FORWARD_DISPLACEMENT  = 4.0f * mmPerInch;   // eg: Camera is 4 Inches in front of robot center
-        final float CAMERA_VERTICAL_DISPLACEMENT = 8.0f * mmPerInch;   // eg: Camera is 8 Inches above ground
+        final float CAMERA_FORWARD_DISPLACEMENT  = 8.0f * mmPerInch;   // eg: Camera is 8 Inches in front of robot center
+        final float CAMERA_VERTICAL_DISPLACEMENT = 13.5f * mmPerInch;   // eg: Camera is 13.5 Inches above ground
         final float CAMERA_LEFT_DISPLACEMENT     = 0;     // eg: Camera is ON the robot's center line
 
         OpenGLMatrix robotFromCamera = OpenGLMatrix
@@ -360,6 +361,7 @@ public class CVUnit {
             opMode.telemetry.addData("Rot (deg)", "{Roll, Pitch, Heading} = %.0f, %.0f, %.0f",
                     rotation.firstAngle, rotation.secondAngle, rotation.thirdAngle);
 
+            /*
             // Use Pythagorean theorem to calculate the distance between the robot and the target
             // a^2 + b^2 = c^2
 
@@ -373,7 +375,7 @@ public class CVUnit {
             // between 33 and 45 "fictional inches"
             if (hypotenuse < 45 && hypotenuse > 33){
                 opMode.telemetry.addData("LAUNCH READY at distance", hypotenuse);
-            }
+            }*/
         }
         else {opMode.telemetry.addData("Visible Target", "none");}
 

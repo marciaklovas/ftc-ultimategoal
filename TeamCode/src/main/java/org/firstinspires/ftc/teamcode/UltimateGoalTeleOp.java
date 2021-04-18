@@ -56,6 +56,7 @@ public class UltimateGoalTeleOp extends LinearOpMode {
             UltGoal.triggerLauncher();
             UltGoal.look();
             UltGoal.controlArm();
+            UltGoal.trackTarget();
 
             //////////////// GAMEPAD 1 (A) ///////////////////
             // Driving, turning, finding lines, and collecting rings
