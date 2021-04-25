@@ -235,6 +235,8 @@ public class CVUnit {
         for (VuforiaTrackable trackable : allTrackables) {
             ((VuforiaTrackableDefaultListener) trackable.getListener()).setPhoneInformation(robotFromCamera, parameters.cameraDirection);
         }
+
+        initTfod();
     }
 
     public void look() {

@@ -22,7 +22,7 @@ public class OurRobot {
     private Drivetrain drivetrain;
     private Intake intake;
     private Launcher launcher;
-    private I2c mcp;
+    //private I2c mcp;
     private CVUnit cv;
     private Arm arm; // to pick up or drag wobble stick
 
@@ -31,7 +31,7 @@ public class OurRobot {
         drivetrain = new Drivetrain(opmode);
         intake = new Intake(opmode);
         launcher = new Launcher(opmode);
-        mcp = new I2c(opmode);
+        //mcp = new I2c(opmode);
         cv = new CVUnit(opmode);
         arm = new Arm(opmode);
     }
@@ -45,7 +45,7 @@ public class OurRobot {
     }
     public void triggerIntake(){intake.trigger();}
     public void triggerLauncher() {launcher.trigger(); }
-    public void signalDriver() {mcp.ledOn();}
+    //public void signalDriver() {mcp.ledOn();}
     public void look() {cv.look();};
     public void controlArm() {arm.adjustArm();};
 
