@@ -60,7 +60,7 @@ public class Arm {
                     arm.getPosition());
             //opmode.telemetry.update();
 
-        clamp.setPosition(opmode.gamepad2.left_trigger);
+        clamp.setPosition(0.5 - (opmode.gamepad2.left_trigger/2));
         opmode.telemetry.addData("clamp: ",
                 clamp.getPosition());
         opmode.telemetry.update();
