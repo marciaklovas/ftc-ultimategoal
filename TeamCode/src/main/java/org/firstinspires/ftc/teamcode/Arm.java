@@ -67,18 +67,14 @@ public class Arm {
         opmode.telemetry.update();
     }
 
-    public void adjustClamp() {
-        if (isClosed == true){
-            isClosed = false;
+    public void openClamp() {
+
             clamp.setPosition(0.5);
-        }
-        else {
-            isClosed = true;
-            clamp.setPosition(0);
-        }
     }
 
-
+    public void closeClamp() {
+        clamp.setPosition(0);
+    }
 
 
 

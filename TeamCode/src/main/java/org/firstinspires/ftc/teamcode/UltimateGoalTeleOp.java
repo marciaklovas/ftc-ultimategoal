@@ -91,7 +91,11 @@ public class UltimateGoalTeleOp extends LinearOpMode {
             }
 
             if (gamepad2.left_bumper) {
-                UltGoal.clamp();
+                UltGoal.openClamp();
+            }
+
+            if (gamepad2.right_bumper) {
+                UltGoal.closeClamp();
             }
 
             // use some control (?) to UltGoal.signalDriver();

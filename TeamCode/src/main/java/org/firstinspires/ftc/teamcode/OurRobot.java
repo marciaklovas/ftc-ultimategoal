@@ -48,7 +48,8 @@ public class OurRobot {
     //public void signalDriver() {mcp.ledOn();}
     public void look() {cv.look();};
     public void controlArm() {arm.adjustArm();};
-    public void clamp() {arm.adjustClamp();}
+    public void closeClamp() {arm.closeClamp();}
+    public void openClamp() {arm.openClamp();}
 
     public void driveDistance(boolean direction, double inches, double power)
         { drivetrain.goDistance(direction, inches, power);}
