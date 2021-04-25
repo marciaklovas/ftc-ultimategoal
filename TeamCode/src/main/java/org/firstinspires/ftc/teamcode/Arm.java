@@ -24,6 +24,7 @@ public class Arm {
     private Servo clamp;
     //private TouchSensor digitalTouch;
     private LinearOpMode opmode;
+    private boolean isClosed = false;
 
     private double armPower;
     private double angle;
@@ -60,11 +61,23 @@ public class Arm {
                     arm.getPosition());
             //opmode.telemetry.update();
 
-        clamp.setPosition(0.5 - (opmode.gamepad2.left_trigger/2));
-        opmode.telemetry.addData("clamp: ",
-                clamp.getPosition());
+        //clamp.setPosition(0.5 - (opmode.gamepad2.left_trigger/2));
+        //opmode.telemetry.addData("clamp: ",
+              //  clamp.getPosition());
         opmode.telemetry.update();
     }
+
+    public void adjustClamp() {
+        if (isClosed == true){
+            isClosed = false;
+            clamp.setPosition(0.5);
+        }
+        else {
+            isClosed = true;
+            clamp.setPosition(0);
+        }
+    }
+
 
 
 

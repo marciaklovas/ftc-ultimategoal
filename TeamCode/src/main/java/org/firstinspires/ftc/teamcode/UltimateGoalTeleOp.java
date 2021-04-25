@@ -90,6 +90,10 @@ public class UltimateGoalTeleOp extends LinearOpMode {
                 UltGoal.driveDistance(OurRobot.GO_BACKWARD, 24, 0.3);
             }
 
+            if (gamepad2.left_bumper) {
+                UltGoal.clamp();
+            }
+
             // use some control (?) to UltGoal.signalDriver();
 
             //////////////// GAMEPAD 2 (B) ///////////////////
