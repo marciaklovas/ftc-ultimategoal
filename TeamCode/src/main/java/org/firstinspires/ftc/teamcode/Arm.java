@@ -21,6 +21,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Arm {
 
     private Servo arm;
+    private Servo clamp;
     //private TouchSensor digitalTouch;
     private LinearOpMode opmode;
 
@@ -31,7 +32,7 @@ public class Arm {
     public Arm(LinearOpMode opmode) {
         this.opmode = opmode; // 'this' used for clarity
         arm       = opmode.hardwareMap.get(Servo.class, "armlift");
-        //lift       = opmode.hardwareMap.get(DcMotor.class, "armlift");
+        clamp       = opmode.hardwareMap.get(Servo.class, "clamp");
         //digitalTouch = opmode.hardwareMap.get(TouchSensor.class, "touch");
     }
 
@@ -50,11 +51,19 @@ public class Arm {
     {
         if (opmode.gamepad2.right_stick_y <= 0) {
 
-            arm.setPosition(((-opmode.gamepad2.right_stick_y / (1 / .55))) + .25);
+
+           // arm.setPosition(((-opmode.gamepad2.right_stick_y / (1 / .55))) + .25);
         }
+
+        arm.setPosition(opmode.gamepad2.right_stick_y);
             opmode.telemetry.addData("armposition: ",
                     arm.getPosition());
-            opmode.telemetry.update();
+            //opmode.telemetry.update();
+
+        clamp.setPosition(opmode.gamepad2.left_trigger);
+        opmode.telemetry.addData("clamp: ",
+                clamp.getPosition());
+        opmode.telemetry.update();
     }
 
 
