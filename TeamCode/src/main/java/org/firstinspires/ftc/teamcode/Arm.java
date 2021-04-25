@@ -52,10 +52,10 @@ public class Arm {
         if (opmode.gamepad2.right_stick_y <= 0) {
 
 
-           // arm.setPosition(((-opmode.gamepad2.right_stick_y / (1 / .55))) + .25);
+            arm.setPosition(((-opmode.gamepad2.right_stick_y / (1 / .55))) + .25);
         }
 
-        arm.setPosition(opmode.gamepad2.right_stick_y);
+        //arm.setPosition(opmode.gamepad2.right_stick_y);
             opmode.telemetry.addData("armposition: ",
                     arm.getPosition());
             //opmode.telemetry.update();
