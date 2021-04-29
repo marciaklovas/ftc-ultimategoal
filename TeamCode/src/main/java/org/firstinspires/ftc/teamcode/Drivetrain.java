@@ -47,7 +47,7 @@ public class Drivetrain {
     // declare constants
     final static double WHEEL_CIRCUM = 12.2;   // in inches
     final static int TETRIX_MOTOR_1440 = 1440; // 1440 ticks per revolution
-    final static double WHITE_THRESHOLD = 0.060;
+    final static double WHITE_THRESHOLD = 0.040;
     final static boolean FAST = false;
     final static boolean SLOW = true;
 
@@ -205,9 +205,16 @@ public class Drivetrain {
         // torquenado motor encoder has 1440 ticks per revolution
         double ticks=rotations*TETRIX_MOTOR_1440;
 
-        leftWheel.setTargetPosition((int)ticks);
-        rightWheel.setTargetPosition((int)ticks);
-
+        if (direction) // true = backward
+        {
+            leftWheel.setTargetPosition(-(int) ticks);
+            rightWheel.setTargetPosition(-(int) ticks);
+        }
+        else
+        {
+            leftWheel.setTargetPosition((int) ticks);
+            rightWheel.setTargetPosition((int) ticks);
+        }
         // setup to go desired distance
         leftWheel.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightWheel.setMode(DcMotor.RunMode.RUN_TO_POSITION);

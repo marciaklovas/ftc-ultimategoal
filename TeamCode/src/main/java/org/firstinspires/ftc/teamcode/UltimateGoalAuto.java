@@ -8,6 +8,7 @@
 //  Revisions
 //      12-01-18    Elijah W.   Original
 //      02-19-21    Elijah W.   Updated for Ultimate Goal
+//      04-29-21    Elijah W.   Added code to drop off wobble stick
 //
 */
 
@@ -40,37 +41,50 @@ public class UltimateGoalAuto extends LinearOpMode {
         // detect 0, 1 or 4 rings
 
         // lower arm around wobble stick
-        UltGoal.lowerArm();
+        //UltGoal.lowerArm();
+        //sleep(200);
 
-        // if 0, drive to A square
-        // if 1, drive to B square
-        // if 4, drive to C square
-        if (UltGoal.getRings() == 0)
-        {
-            UltGoal.driveDistance(OurRobot.GO_FORWARD, 60, 0.3);
-            UltGoal.fwdToLine();
-            UltGoal.turnRight(15);
+        // tested- this works!
+        //if (UltGoal.getRings() == 0) // if 0, drive to A square
+        /*{
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 40, 0.5); sleep(200);
+            UltGoal.turnLeft(30); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 3, 0.3); sleep(200);
+            //UltGoal.raiseArm(); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_BACKWARD, 3, 0.5); sleep(200);
 
-            // use CV to drive to low goal
         }
-        else if (UltGoal.getRings() == 1)
+        else if (UltGoal.getRings() == 1) // if 1, drive to B square
         {
-            // use CV to drive to low goal
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 60, 0.5); sleep(200);
+            UltGoal.fwdToLine(); sleep(200);
+            UltGoal.turnRight(45); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 3, 0.3); sleep(200);
+            //UltGoal.raiseArm(); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_BACKWARD, 3, 0.5); sleep(200);
         }
-        else if (UltGoal.getRings() == 4)
-        {
-            // use CV to drive to low goal
-        }
+        else if (UltGoal.getRings() == 4) // if 4, drive to C square
+        {*/
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 60, 0.5); sleep(200);
+            UltGoal.fwdToLine(); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 20, 0.5); sleep(200);
+            UltGoal.turnLeft(30); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 6, 0.3); sleep(200);
+            //UltGoal.raiseArm(); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_BACKWARD, 6, 0.5); sleep(200);
+        /*}
         else
         {
             // skip this part of the challenge - cv failed
-        }
+            UltGoal.raiseArm(); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 60, 0.5); sleep(200);
+            UltGoal.fwdToLine(); sleep(200);
+        } */
 
-        // dump 3 rings passively into low goal
+        // launch rings into low goal
 
         //drive back to launch line and park - avoiding obstacles
-        UltGoal.driveDistance(OurRobot.GO_BACKWARD, 60, 0.2);
-        sleep(200);
-        UltGoal.backToLine();
+        //UltGoal.driveDistance(OurRobot.GO_BACKWARD, 60, 0.2); //sleep(200);
+        //UltGoal.backToLine();
     }
 }
