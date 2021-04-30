@@ -1,9 +1,8 @@
 /*
 //  FTC FROGS (#14335) TEAM CODE
 //
-//  TELEOP
-//
-//  Class UltimateGoalTeleOp
+//  Class:
+//      UltimateGoalTeleOp (TELEOP) - take in and launch rings, place rings on wobble stick
 //
 //  Revisions
 //      09-27-20    Elijah W. and Coach M.   Original
@@ -58,51 +57,40 @@ public class UltimateGoalTeleOp extends LinearOpMode {
             UltGoal.arm.adjustArm();
 
             //////////////// GAMEPAD 1 (A) ///////////////////
-            // Driving, turning, finding lines, and collecting rings
+            // Driving, turning, and finding lines
 
             // press gamepad1.x to stop finding a line (fwd or back)
             if (gamepad1.y) {
                 UltGoal.drivetrain.fwdToLine();
             }
-
             if (gamepad1.a) {
                 UltGoal.drivetrain.backToLine();
             }
-
             if (gamepad1.b) {
                 controlSpeed = !controlSpeed;
             }
-
             if (gamepad1.right_bumper) {
                 UltGoal.drivetrain.turnRight(90);
             }
-
             if (gamepad1.left_bumper) {
                 UltGoal.drivetrain.turnLeft(90);
             }
-
             if (gamepad1.dpad_up) {
                 UltGoal.drivetrain.goDistance(OurRobot.GO_FORWARD, 24, 0.3);
             }
-
             if (gamepad1.dpad_down) {
                 UltGoal.drivetrain.goDistance(OurRobot.GO_BACKWARD, 24, 0.3);
             }
 
+
+            //////////////// GAMEPAD 2 (B) ///////////////////
+            // Arm controls
             if (gamepad2.left_bumper) {
                 UltGoal.arm.openClamp();
             }
-
             if (gamepad2.right_bumper) {
                 UltGoal.arm.closeClamp();
             }
-
-            // use some control (?) to UltGoal.signalDriver();
-
-            //////////////// GAMEPAD 2 (B) ///////////////////
-            // Launching rings, controlling the arm, and doing computer vision
-
-            // Arm controls
             if (gamepad2.x) {
                 UltGoal.arm.init();
             }

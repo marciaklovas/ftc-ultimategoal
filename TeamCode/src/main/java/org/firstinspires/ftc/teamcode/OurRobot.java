@@ -1,12 +1,14 @@
 /*
 //  FTC FROGS (#14335) TEAM CODE
 //
-//  Class OurRobot
+//  Class:
+//      OurRobot - initializes subsystems
 //
 //  Revisions
 //  	09-27-20	Coach M.   Original
 //      02-19-21    Elijah W.  Renamed methods and objects to more meaningful
 //                             Added I2C MCP23017 to robot
+//      04-30-21    Elijah W.  Removed I2C
 */
 
 package org.firstinspires.ftc.teamcode;
@@ -22,7 +24,6 @@ public class OurRobot {
     public Drivetrain drivetrain;
     public Intake intake;
     public Launcher launcher;
-    //public I2c mcp;
     public CVUnit cv;
     public Arm arm; // to pick up or drag wobble stick
 
@@ -31,7 +32,6 @@ public class OurRobot {
         drivetrain = new Drivetrain(opmode);
         intake = new Intake(opmode);
         launcher = new Launcher(opmode);
-        //mcp = new I2c(opmode);
         cv = new CVUnit(opmode);
         arm = new Arm(opmode);
     }

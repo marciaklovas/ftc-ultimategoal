@@ -2,10 +2,7 @@
 //FTC FROGS (#14335) TEAM CODE
 //
 //  Class:
-//      Intake
-//
-//  Methods:
-//      trigger - ramps up gradually
+//      Intake - collects rings
 //
 //  Revisions:
 //      10/18/20    Original    Kai P + Elijah E: Original
@@ -38,12 +35,4 @@ public class Intake {
         speed = opMode.gamepad1.left_trigger - opMode.gamepad1.right_trigger;
         flywheel1.setPower(speed);
     }
-
-    // not used - turns on full power
-    public void wheelButton(){
-        //buttonspeed = opMode.gamepad1.right_bumper;
-        //flywheel1.setPower(speed);
-        flywheel1.setPower(1);
-    }
-
 }

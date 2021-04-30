@@ -1,17 +1,8 @@
 /*
 //  FTC FROGS (#14335) TEAM CODE
 //
-//  Class CVUnit (Computer Vision Unit)
-//
-//  Methods:
-//      constructor
-//      init
-//      initTFod
-//      findRing (tensorflow)
-//      stop (tensorflow)
-//      track (vuforia target)
-//      halt (vuforia target)
-//      look - rotate phone
+//  Class:
+//      CVUnit - computer vision unit (vuforia and tensorflow)
 //
 //  Revisions
 //      03-03-19    Elijah W. and Kai P.   Original Vuforia code
@@ -49,23 +40,12 @@ import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocaliz
 
 public class CVUnit {
 
-    /*
-     * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
-     * 'parameters.vuforiaLicenseKey' is initialized is for illustration only, and will not function.
-     * A Vuforia 'Development' license key, can be obtained free of charge from the Vuforia developer
-     * web site at https://developer.vuforia.com/license-manager.
-     *
-     * Vuforia license keys are always 380 characters long, and look as if they contain mostly
-     * random data. As an example, here is a example of a fragment of a valid key:
-     *      ... yIgIzTqZ4mWjk9wd3cZO9T1axEqzuhxoGlfOOI2dRzKS4T0hQ8kT ...
-     * Once you've obtained a license key, copy the string from the Vuforia web site
-     * and paste it in to your code on the next line, between the double quotes.
-     */
     private static final String VUFORIA_KEY = "AXxk3MH/////AAABmcCjp4eXrUyZs5tOO8TONvMz3VzTvaC0ZJt2qjoaHhv4IaWBZd/c3gLZ3MRBueF42CIa+KmCyL1hnYvVXoWu16oV+TkxMIBZ/LA7ESIDcjwB+21nVNMwkoJOKc9OpCqUIHMp70ggeo+F56XeIQSHW9lKxQ676t2zdA3HyJdGIszct8XXEv64ZlP5ziOq550/dSTJ8LKOLrOpC843VA+WbbDMxriAJRQ398m0X4l95cobdq6I9uYNGYYwKi992u64Xa+iJeY2sB/vu3Vqr76y8jaJyyFgCSISuWQrf8Wl0qU0pFfMzPyg6MvSqphNxADx73WCmXvTzXV/8ZFSuwGh07Ate6HocdW+cLVJhY0lYuVY";
 
     private static final float mmPerInch        = 25.4f;
-    private static final float mmTargetHeight   = (6) * mmPerInch;
+
     // the height of the center of the target image above the floor
+    private static final float mmTargetHeight   = (6) * mmPerInch;
 
     // Constants for perimeter targets
     private static final float halfField = 72 * mmPerInch;
@@ -82,8 +62,7 @@ public class CVUnit {
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
-    private TFObjectDetector tfod;
-    // tensorflow object detector engine
+    private TFObjectDetector tfod; // tensorflow object detector engine
 
     // declare member vars
     private LinearOpMode opMode;
@@ -156,7 +135,6 @@ public class CVUnit {
         redTowerGoalTarget.setLocation(OpenGLMatrix
                 .translation(halfField, -quadField, mmTargetHeight)
                 .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, -90)));
-
 
         /**
          * In order for localization to work, we need to tell the system where each target is on the field, and
@@ -244,6 +222,7 @@ public class CVUnit {
         servo.setPosition((opMode.gamepad2.left_stick_x/2)+.5);
     }
 
+    // TODO!!!
     public void scanForRings() {};
 
     public void initPhone() {};

@@ -1,17 +1,8 @@
 /*
 //  FTC FROGS (#14335) TEAM CODE
 //
-//  Class Drivetrain
-//
-//  Methods:
-//  	constructor
-//  	init()
-//  	drive()
-//      backToLine() - yellow line?
-//      fwdToLine() - yellow line?
-//      goDistance()
-//      turnRight()
-//      turnLeft()
+//  Class:
+//      Drivetrain - drives, turns, and finds lines
 //
 //  Revisions
 //  	09-27-20	Elijah W.   Original

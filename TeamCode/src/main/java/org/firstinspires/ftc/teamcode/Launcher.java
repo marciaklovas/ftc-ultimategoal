@@ -2,11 +2,7 @@
 //FTC FROGS (#14335) TEAM CODE
 //
 //  Class:
-//      Launcher
-//
-//  Methods:
-//      Launcher
-//      wheelTrigger- ramps up gradually
+//      Launcher - launches rings
 //
 //  Revisions:
 //      12/6/20    Kai P + Elijah W      Original

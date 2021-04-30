@@ -1,11 +1,8 @@
 /*
 //  FTC FROGS (#14335) TEAM CODE
 //
-//  Class Arm
-//
-//  Methods:
-//      constructor
-//      init()
+//  Class:
+//      Arm - picks up rings and puts them on a wobble stick
 //
 //  Revisions
 //      02-21-21    Elijah W.       Original
@@ -22,7 +19,6 @@ public class Arm {
 
     private Servo arm;
     private Servo clamp;
-    //private TouchSensor digitalTouch;
     private LinearOpMode opmode;
     private boolean isClosed = false;
 
@@ -34,12 +30,10 @@ public class Arm {
         this.opmode = opmode; // 'this' used for clarity
         arm       = opmode.hardwareMap.get(Servo.class, "armlift");
         clamp       = opmode.hardwareMap.get(Servo.class, "clamp");
-        //digitalTouch = opmode.hardwareMap.get(TouchSensor.class, "touch");
     }
 
     // initialize  arm to up position
     public void init() {
-     // initialize claw arm to up position
         angle = 0.4;
         arm.setPosition(angle);
         while (arm.getPosition() != 0.4)
@@ -48,44 +42,41 @@ public class Arm {
         }
     }
 
+    // move arm up and down
     public void adjustArm()
     {
         if (opmode.gamepad2.right_stick_y <= 0) {
-
-
             arm.setPosition(((-opmode.gamepad2.right_stick_y / (1 / .55))) + .25);
         }
 
         //arm.setPosition(opmode.gamepad2.right_stick_y);
-            opmode.telemetry.addData("armposition: ",
-                    arm.getPosition());
-            //opmode.telemetry.update();
+        opmode.telemetry.addData("armposition: ", arm.getPosition());
 
         //clamp.setPosition(0.5 - (opmode.gamepad2.left_trigger/2));
-        //opmode.telemetry.addData("clamp: ",
-              //  clamp.getPosition());
+        //opmode.telemetry.addData("clamp: ", clamp.getPosition());
         opmode.telemetry.update();
     }
 
-    public void openClamp() {
-
-            clamp.setPosition(0.5);
-    }
-
-    public void closeClamp() {
-        clamp.setPosition(0);
-    }
-
-
-
+    // move arm to up position
     public void up(){
         angle = 0.4; // ??
         arm.setPosition(angle);
     }
 
+    // move arm to down position
     public void down() {
         angle = 0.8; // ??
         arm.setPosition(angle);
     }
 
+    public void openClamp() {
+
+        clamp.setPosition(0.5);
+    }
+
+    // grab a ring
+    public void closeClamp() {
+
+        clamp.setPosition(0);
+    }
 }

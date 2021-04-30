@@ -1,7 +1,8 @@
 /*
 //  FTC FROGS (#14335) TEAM CODE
 //
-//  Class I2c - This class contains commands to interface with the
+//  Class:
+//      I2c - This class contains commands to interface with the
 //      LCD and the MCP23017 devices connected to the Rev Expansion Hub
 //
 //  Methods:
