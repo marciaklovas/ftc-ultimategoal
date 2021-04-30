@@ -51,23 +51,22 @@ public class UltimateGoalTeleOp extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            UltGoal.drive(controlSpeed);
-            UltGoal.triggerIntake();
-            UltGoal.triggerLauncher();
-            UltGoal.look();
-            UltGoal.controlArm();
-            //UltGoal.trackTarget();
+            UltGoal.drivetrain.drive(controlSpeed);
+            UltGoal.intake.trigger();
+            UltGoal.launcher.trigger();
+            UltGoal.cv.look();
+            UltGoal.arm.adjustArm();
 
             //////////////// GAMEPAD 1 (A) ///////////////////
             // Driving, turning, finding lines, and collecting rings
 
             // press gamepad1.x to stop finding a line (fwd or back)
             if (gamepad1.y) {
-                UltGoal.fwdToLine();
+                UltGoal.drivetrain.fwdToLine();
             }
 
             if (gamepad1.a) {
-                UltGoal.backToLine();
+                UltGoal.drivetrain.backToLine();
             }
 
             if (gamepad1.b) {
@@ -75,27 +74,27 @@ public class UltimateGoalTeleOp extends LinearOpMode {
             }
 
             if (gamepad1.right_bumper) {
-                UltGoal.turnRight(90);
+                UltGoal.drivetrain.turnRight(90);
             }
 
             if (gamepad1.left_bumper) {
-                UltGoal.turnLeft(90);
+                UltGoal.drivetrain.turnLeft(90);
             }
 
             if (gamepad1.dpad_up) {
-                UltGoal.driveDistance(OurRobot.GO_FORWARD, 24, 0.3);
+                UltGoal.drivetrain.goDistance(OurRobot.GO_FORWARD, 24, 0.3);
             }
 
             if (gamepad1.dpad_down) {
-                UltGoal.driveDistance(OurRobot.GO_BACKWARD, 24, 0.3);
+                UltGoal.drivetrain.goDistance(OurRobot.GO_BACKWARD, 24, 0.3);
             }
 
             if (gamepad2.left_bumper) {
-                UltGoal.openClamp();
+                UltGoal.arm.openClamp();
             }
 
             if (gamepad2.right_bumper) {
-                UltGoal.closeClamp();
+                UltGoal.arm.closeClamp();
             }
 
             // use some control (?) to UltGoal.signalDriver();
@@ -105,17 +104,15 @@ public class UltimateGoalTeleOp extends LinearOpMode {
 
             // Arm controls
             if (gamepad2.x) {
-                UltGoal.initializeArm();
+                UltGoal.arm.init();
             }
             if (gamepad2.a) {
-                UltGoal.lowerArm();
+                UltGoal.arm.down();
             }
             if (gamepad2.y) {
-                UltGoal.raiseArm();
+                UltGoal.arm.up();
             }
-            /*if (gamepad2.left_bumper) {
-                UltGoal.signalDriver();
-            }*/
+
         }
     }
 }

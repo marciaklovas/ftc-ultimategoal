@@ -244,6 +244,10 @@ public class CVUnit {
         servo.setPosition((opMode.gamepad2.left_stick_x/2)+.5);
     }
 
+    public void scanForRings() {};
+
+    public void initPhone() {};
+
     /**
      * Initialize the Tensor Flow Object Detection engine.
      */
