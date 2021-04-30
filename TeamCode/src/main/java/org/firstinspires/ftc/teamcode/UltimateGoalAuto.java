@@ -9,6 +9,7 @@
 //      12-01-18    Elijah W.   Original
 //      02-19-21    Elijah W.   Updated for Ultimate Goal
 //      04-29-21    Elijah W.   Added code to drop off wobble stick
+//      04-30-21    Elijah W.   Added code to detect stack of rings
 //
 */
 
@@ -25,6 +26,7 @@ public class UltimateGoalAuto extends LinearOpMode {
     // Declare members
     private OurRobot UltGoal;
     private ElapsedTime runtime; // not sure how to use this yet
+    private String stack = "None";
 
     @Override
     public void runOpMode() {
@@ -38,48 +40,46 @@ public class UltimateGoalAuto extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+        long start = System.currentTimeMillis();
+
         // detect 0, 1 or 4 rings
+        while ((stack.equals("None")) && ((System.currentTimeMillis()-start) < 10000)) {
+            // keep scanning
+            stack = UltGoal.getRings();
+        }
 
         // lower arm around wobble stick
         //UltGoal.lowerArm();
         //sleep(200);
 
-        // tested- this works!
-        //if (UltGoal.getRings() == 0) // if 0, drive to A square
-        /*{
-            UltGoal.driveDistance(OurRobot.GO_FORWARD, 40, 0.5); sleep(200);
-            UltGoal.turnLeft(30); sleep(200);
-            UltGoal.driveDistance(OurRobot.GO_FORWARD, 3, 0.3); sleep(200);
-            //UltGoal.raiseArm(); sleep(200);
-            UltGoal.driveDistance(OurRobot.GO_BACKWARD, 3, 0.5); sleep(200);
-
-        }
-        else if (UltGoal.getRings() == 1) // if 1, drive to B square
+        if (stack.equals("Single")) // if 1 ring, drive to B square
         {
-            UltGoal.driveDistance(OurRobot.GO_FORWARD, 60, 0.5); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 60, 0.7); sleep(200);
             UltGoal.fwdToLine(); sleep(200);
             UltGoal.turnRight(45); sleep(200);
             UltGoal.driveDistance(OurRobot.GO_FORWARD, 3, 0.3); sleep(200);
             //UltGoal.raiseArm(); sleep(200);
-            UltGoal.driveDistance(OurRobot.GO_BACKWARD, 3, 0.5); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_BACKWARD, 3, 0.7); sleep(200);
         }
-        else if (UltGoal.getRings() == 4) // if 4, drive to C square
-        {*/
-            UltGoal.driveDistance(OurRobot.GO_FORWARD, 60, 0.5); sleep(200);
+        else if (stack.equals("Quad")) // if 4 rings, drive to C square
+        {
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 60, 0.7); sleep(200);
             UltGoal.fwdToLine(); sleep(200);
-            UltGoal.driveDistance(OurRobot.GO_FORWARD, 20, 0.5); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 20, 0.7); sleep(200);
             UltGoal.turnLeft(30); sleep(200);
             UltGoal.driveDistance(OurRobot.GO_FORWARD, 6, 0.3); sleep(200);
             //UltGoal.raiseArm(); sleep(200);
-            UltGoal.driveDistance(OurRobot.GO_BACKWARD, 6, 0.5); sleep(200);
-        /*}
-        else
+            UltGoal.driveDistance(OurRobot.GO_BACKWARD, 6, 0.7); sleep(200);
+        }
+        else // stack is zero or scan failed, drive to A
         {
-            // skip this part of the challenge - cv failed
-            UltGoal.raiseArm(); sleep(200);
-            UltGoal.driveDistance(OurRobot.GO_FORWARD, 60, 0.5); sleep(200);
-            UltGoal.fwdToLine(); sleep(200);
-        } */
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 40, 0.7); sleep(200);
+            UltGoal.turnLeft(30); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_FORWARD, 3, 0.3); sleep(200);
+            //UltGoal.raiseArm(); sleep(200);
+            UltGoal.driveDistance(OurRobot.GO_BACKWARD, 3, 0.7); sleep(200);
+
+        }
 
         // launch rings into low goal
 

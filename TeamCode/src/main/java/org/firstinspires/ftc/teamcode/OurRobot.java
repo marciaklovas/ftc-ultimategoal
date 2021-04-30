@@ -62,5 +62,6 @@ public class OurRobot {
     public void lowerArm() {arm.down();}
     public void trackTarget() {cv.track();};
 
-    public int getRings() {return cv.detectNumberOfRings();}
+    //public int getRings() {return cv.detectNumberOfRings();}
+    public String getRings() {return cv.detectRings();}
 }

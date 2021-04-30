@@ -110,6 +110,7 @@ public class CVUnit {
     }
 
     public void init() {
+
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
         parameters.vuforiaLicenseKey = VUFORIA_KEY ;
         parameters.cameraDirection   = CAMERA_CHOICE;
@@ -255,11 +256,14 @@ public class CVUnit {
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
     }
 
-    public void findRing() // tensorflow
+    public String detectRings() // tensorflow
     {
+        String value = "None";
+
         if (tfod != null)
         {
             tfod.activate();
+            tfod.setZoom(2.5, 16.0/9.0);
         }
 
         if (tfod != null)
@@ -268,6 +272,7 @@ public class CVUnit {
             // the last time that call was made.
             List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
             if (updatedRecognitions != null) {
+
                 opMode.telemetry.addData("# Object Detected", updatedRecognitions.size());
 
                 // step through the list of recognitions and display boundary info.
@@ -278,42 +283,14 @@ public class CVUnit {
                             recognition.getLeft(), recognition.getTop());
                     opMode.telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
                             recognition.getRight(), recognition.getBottom());
+                    value = recognition.getLabel();
                 }
+                opMode.telemetry.addData(String.format("Value ", i), value);
                 opMode.telemetry.update();
             }
        }
-    }
 
-    public int detectNumberOfRings() // tensorflow
-    {
-        if (tfod != null)
-        {
-            tfod.activate();
-        }
-
-        if (tfod != null)
-        {
-            // getUpdatedRecognitions() will return null if no new information is available since
-            // the last time that call was made.
-            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-            if (updatedRecognitions != null) {
-                opMode.telemetry.addData("# Object Detected", updatedRecognitions.size());
-
-                // step through the list of recognitions and display boundary info.
-                int i = 0;
-                for (Recognition recognition : updatedRecognitions) {
-                    opMode.telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
-                    opMode.telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-                            recognition.getLeft(), recognition.getTop());
-                    opMode.telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
-                            recognition.getRight(), recognition.getBottom());
-                }
-                opMode.telemetry.update();
-                return 1; // fix this to return the correct number based on the recognition
-            }
-
-        }
-        return 9; // nothing detected
+        return value;
     }
 
     public void stop() //tensorflow
