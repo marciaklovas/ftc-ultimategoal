@@ -46,7 +46,7 @@ public class Arm {
     public void adjustArm()
     {
         if (opmode.gamepad2.right_stick_y <= 0) {
-            arm.setPosition(((-opmode.gamepad2.right_stick_y / (1 / .55))) + .25);
+            arm.setPosition(((-opmode.gamepad2.right_stick_y / (1 / .60))) + .15);
         }
 
         //arm.setPosition(opmode.gamepad2.right_stick_y);
