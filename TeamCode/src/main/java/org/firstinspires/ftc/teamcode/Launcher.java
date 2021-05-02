@@ -12,8 +12,8 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class Launcher {
 
@@ -24,7 +24,7 @@ public class Launcher {
     public Launcher (LinearOpMode opmode) {
         this.opMode = opmode;
         launcherMotor = opMode.hardwareMap.get(DcMotor.class,"launcher");
-        launcherMotor.setDirection(DcMotor.Direction.FORWARD);
+        launcherMotor.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void trigger() {
