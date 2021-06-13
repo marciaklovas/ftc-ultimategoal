@@ -74,6 +74,7 @@ public class CVUnit {
     private float phoneZRotate    = 0;
 
     private Servo servo;
+    private Servo servo2;
 
     private VuforiaTrackables targetsUltimateGoal;
     private List<VuforiaTrackable> allTrackables;
@@ -85,6 +86,7 @@ public class CVUnit {
         cameraMonitorViewId=opMode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
                 opmode.hardwareMap.appContext.getPackageName());
         servo = opmode.hardwareMap.get(Servo.class, "phone");
+        servo2 = opmode.hardwareMap.get(Servo.class, "phone2");
 
     }
 
@@ -220,6 +222,7 @@ public class CVUnit {
 
     public void look() {
         servo.setPosition((opMode.gamepad2.left_stick_x/2)+.5);
+        servo2.setPosition((opMode.gamepad2.left_stick_y/2)+.5);
     }
 
     // TODO!!!
