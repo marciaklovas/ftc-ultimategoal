@@ -4,11 +4,6 @@
 //  Class:
 //      OurRobot - initializes subsystems
 //
-//  Revisions
-//  	09-27-20	Coach M.   Original
-//      02-19-21    Elijah W.  Renamed methods and objects to more meaningful
-//                             Added I2C MCP23017 to robot
-//      04-30-21    Elijah W.  Removed I2C
 */
 
 package org.firstinspires.ftc.teamcode;

@@ -4,12 +4,6 @@
 //  Class:
 //      UltimateGoalTeleOp (TELEOP) - take in and launch rings, place rings on wobble stick
 //
-//  Revisions
-//      09-27-20    Elijah W. and Coach M.   Original
-//      02-24-21    Elijah W.                Added gamepad1 controls to drive,
-//                                           turn, and find lines
-//      02-25-21    Elijah W.                Added gamepad2 servo arm controls
-//
 */
 
 package org.firstinspires.ftc.teamcode;

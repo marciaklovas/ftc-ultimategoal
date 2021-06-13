@@ -4,10 +4,6 @@
 //  Class:
 //      Arm - picks up rings and puts them on a wobble stick
 //
-//  Revisions
-//      02-21-21    Elijah W.       Original
-//      02-25-21    Elijah W.       Changed arm from Tetrix motor to Servo
-//      03-21-21    Kai P.          add adjust arm procedure
 */
 
 package org.firstinspires.ftc.teamcode;

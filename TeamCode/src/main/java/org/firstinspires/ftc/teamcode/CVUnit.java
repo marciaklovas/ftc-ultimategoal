@@ -4,12 +4,6 @@
 //  Class:
 //      CVUnit - computer vision unit (vuforia and tensorflow)
 //
-//  Revisions
-//      03-03-19    Elijah W. and Kai P.   Original Vuforia code
-//      03-18-19    Elijah W. and Kai P.   Added Tensor Flow code
-//      02-19-21    Elijah W.              Updated for Ultimate Goal
-//      02-21-21    Elijah W,              Added look() method to rotate phone
-//
 */
 
 package org.firstinspires.ftc.teamcode;

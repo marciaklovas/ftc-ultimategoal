@@ -19,10 +19,6 @@
 //      writeMode - set up to write
 //      ledOn, ledOff
 //
-//  Revisions
-//  	02-05-21	Elijah W. and Marcia L.   Original
-//      02-13-21    Elijah W. and Marcia L.   Added MCP23017 methods
-//
 */
 
 package org.firstinspires.ftc.teamcode;

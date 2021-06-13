@@ -4,18 +4,6 @@
 //  Class:
 //      Drivetrain - drives, turns, and finds lines
 //
-//  Revisions
-//  	09-27-20	Elijah W.   Original
-//      10-11-20    Elijah W.   Commented constructor and drive methods to use
-//                              m0 and m1 only - prototype drive
-//      02-19-21    Elijah W.   Renamed from Normal Drive to Drivetrain,
-//                              Added color sensor and IMU methods
-//      03-06-21    Elijah W.   Corrected tick sign in goDistance() and
-//                              updated color sensor code to use
-//                              NormalizedColorSensor
-//      03-14-21    Coach M. &  Cleaned up code - GO_BACKWARD/FORWARD
-//                  Elijah W.
-//
 */
 package org.firstinspires.ftc.teamcode;
 

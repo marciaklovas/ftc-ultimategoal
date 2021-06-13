@@ -4,13 +4,6 @@
 //  Class:
 //      UltimateGoalAuto (AUTONOMOUS) - scans ring stack, delivers wobble stick and parks
 //
-//  Revisions
-//      12-01-18    Elijah W.   Original
-//      02-19-21    Elijah W.   Updated for Ultimate Goal
-//      04-29-21    Elijah W.   Added code to drop off wobble stick
-//      04-30-21    Elijah W.   Added code to detect stack of rings
-//                              Added code to park on launch line
-//
 */
 
 package org.firstinspires.ftc.teamcode;

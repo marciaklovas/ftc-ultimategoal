@@ -4,10 +4,6 @@
 //  Class:
 //      Launcher - launches rings
 //
-//  Revisions:
-//      12/6/20    Kai P + Elijah W      Original
-//      02/19/21   Elijah W + Coach M.   Cleaned up- removed unused code
-//
  */
 
 package org.firstinspires.ftc.teamcode;
