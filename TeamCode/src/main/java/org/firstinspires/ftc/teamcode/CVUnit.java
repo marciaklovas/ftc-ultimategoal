@@ -222,7 +222,7 @@ public class CVUnit {
 
     public void look() {
         servo.setPosition((opMode.gamepad2.left_stick_x/2)+.5);
-        servo2.setPosition((opMode.gamepad2.left_stick_y/2)+.5);
+        servo2.setPosition(((-opMode.gamepad2.left_stick_y/2)+.5));
     }
 
     // TODO!!!
